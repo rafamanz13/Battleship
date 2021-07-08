@@ -1,16 +1,21 @@
 import time
 import numpy as np
+
 from constants import *
+
 def pintar_barco(eslora, tablero):
     while True:
         orientacion = np.random.choice(list('NSEW'))
+
         coordenadas = np.random.randint(0,10, size=2)
         fila = coordenadas[0]
         columna = coordenadas[1]
+
         Norte = tablero[fila:(fila - eslora):-1, columna]
         Sur = tablero[fila:(fila + eslora), columna]
         Este = tablero[fila, columna :(columna + eslora)]
         Oeste = tablero[fila, columna :(columna - eslora):-1]
+
         if (orientacion == 'N') and (len(Norte) == eslora) and ('O' not in Norte):
             tablero[fila:(fila - eslora):-1, columna] = 'O'
             break
@@ -27,11 +32,14 @@ def pintar_barco(eslora, tablero):
 Mirar si nos combiene hacer una función para la lógica de disparos y llamarla
 en disparo_bot y disparo_jugador
 '''
+
 def disparo_bot():
     continua_ejec_bot = True
     while continua_ejec_bot:
+
         disparo_fila_bot = np.random.randint(1, 10)
         disparo_colum_bot = np.random.randint(1, 10)
+
         if (tablero_juego[disparo_fila_bot, disparo_colum_bot] == '~'):
             tablero_juego[disparo_fila_bot, disparo_colum_bot] = '#'
             print('Tablero jugador 1: \n', tablero_juego)
@@ -48,12 +56,16 @@ def disparo_bot():
             continue
         else:
             continua_ejec_bot = False
+
     disparo_jugador()
+
 def disparo_jugador():
     continua_ejecucion = True
     while continua_ejecucion:
+
         disparo_fila = int(input("¿Dónde te gustaría atacar? Elige la fila:\n"))
         disparo_colum = int(input("Ahora alige la columna\n"))
+
         if (0 > disparo_fila > 10) or (0 > disparo_colum > 10):
             print("Tus coordenadas son incorrectas :/ Introduce valores del 1 al 10!")
             #return disparo_jugador()
@@ -79,10 +91,14 @@ def disparo_jugador():
         else:
             print("Has acabado tu turno.")
             continua_ejecucion = False
+
     disparo_bot()
+
+
 def comprobacion():
     print('Empieza el juego.')
     disparo_jugador()
+
     condicion = True
     while condicion:
         if 'O' in tablero_juego:
@@ -92,8 +108,8 @@ def comprobacion():
         else:
             condicion = False
             return False
+
 def nueva_partida():
-    condicion = True
     juego_nuevo = input("¿Te gustaría volver a jugar? Introduce PLAYAGAIN para jugar de nuevo o cualquier tecla para salir")
     if juego_nuevo == 'PLAYAGAIN':
         return iniciar_juego()
@@ -101,7 +117,8 @@ def nueva_partida():
         print("Vámonos al beercamp con Tito") #EASTEREGG
     else:
         print("Gracias por jugar al Hundir la Flota de Gonzalo y Rafa!")
-        condicion = False
+        return False
+
 def iniciar_juego():
     numero_barcos = 0
     while numero_barcos < 10:
@@ -118,7 +135,10 @@ def iniciar_juego():
             pintar_barco(1, tablero_juego)
             pintar_barco(1, tablero_juego_maquina)
         numero_barcos += 1
+
     print('Tablero del jugador 1 \n',tablero_juego)
     comprobacion()
     if comprobacion == False:
         nueva_partida()
+        if nueva_partida == False:
+            exit
