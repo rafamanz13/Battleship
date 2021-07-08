@@ -9,6 +9,18 @@
 # Proyecto:
 
 Este trabajo consistía en recrear el juego de **hundir la flota** en Python.
+Los scripts de nuestro trabajo son 'main.py', 'utils.py' y 'constants.py', el resto de
+scripts son código de apoyo que utilizamos para poder desarrollar nuestra versión del
+juego.
+
+Versión de Python
+`Python 3.8.10`
+
+Para iniciar el juego descarga el repositorio
+`$ git clone <url de la repo>`
+
+Ahora busca el script 'main.py' y ejecútalo
+`$ python main.py`
 
 # Reglas del juego:
 
