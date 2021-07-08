@@ -30,4 +30,4 @@ Este trabajo consistía en recrear el juego de **hundir la flota** en Python.
 # Recursos utilizados:
 
 Se han utilizado las librerías de **Numpy** y **time**, también se han separado en varios scripts
-las funciones del juego y el inicio del juego para mayor simpleza y limpieza.
+las funciones y el inicio del juego para mayor simpleza y limpieza.
